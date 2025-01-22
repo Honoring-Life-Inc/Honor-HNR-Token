@@ -375,7 +375,7 @@ V(t) = \left\lbrace
 \right.
 ```
 
-> If the current time t is before the cliff ends, no tokens are released; after the cliff, tokens are released incrementally at regular intervals (Q_step) until the vesting period ends. Once the vesting period is complete or a "Change of Contract Ownership" event occurs, all remaining tokens are released to the beneficiary. See the table below for variable definitions.
+> If the current time t is before the cliff ends, no tokens are released; after the cliff, tokens are released incrementally at regular intervals ($Q_{step}$) until the vesting period ends. Once the vesting period is complete or a "Change of Contract Ownership" event occurs, all remaining tokens are released to the beneficiary. See the table below for variable definitions.
 
 Where:
 
