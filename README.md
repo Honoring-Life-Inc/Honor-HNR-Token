@@ -835,7 +835,9 @@ We have decided to redeploy the Honor (HNR) token on Zilliqa with updated protec
 ### Bumpy Start
 On December 7, 2024, we launched our Honor (HNR) token on Zilliqa’s EVM Mainnet. This marked a pivotal step toward embracing Web3 technologies and expanding Honoring Life’s crypto presence. However, new to blockchain development and smart contracts, the process was riddled with challenges such as understanding Solidity best practices, managing deployment tools like Hardhat and Remix, and navigating the nuances of blockchain verification and contract optimization.
 Our journey began with successful deployment on Zilliqa’s EVM Testnet using Hardhat development tools. This provided us with the confidence to proceed to Mainnet. Unfortunately, we encountered deployment issues we could not initially resolve due to our lack of experience. To address this, we transitioned to Remix IDE, where we managed to deploy the contract successfully after several attempts.
+
 While verifying the contract on Zilliqa’s explorer, EVMX, we discovered that multiple Mainnet deployments had been completed inadvertently due to a misunderstanding of how deployment confirmations were handled by the tools we used. To maintain trust within our growing community, we systematically identified and burned the tokens from these unintended deployments. This process highlighted significant gaps in our workflow and understanding of blockchain verification tools.
+
 We learned, from the Zilliqa community, that EVMX had been deprecated in favor of Otterscan and that verification required precise adherence to best practices. Flattening our contract into a single file for verification resulted in only partial validation due to hash mismatches, a problem exacerbated by our lack of preparation and understanding. This led us to recognize the need for a thorough review of our practices.
 Finally, we used this code as a trial run with an auditor. 
 
