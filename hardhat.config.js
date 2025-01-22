@@ -1,8 +1,25 @@
 require( "@nomicfoundation/hardhat-toolbox" );
 
-// OpenZeppelin v.4.9.6
+// OpenZeppelin v.5.2.0
 module.exports = {
-   solidity: "0.8.0",
+   solidity: {
+     version  : "0.8.28",
+     settings : {
+       optimizer  : {
+         enabled : true,
+         runs    : 200,
+       },
+       // evmVersion : "cancun", // current
+       // evmVersion : "shanghai",
+       evmVersion : "paris", // the merge
+     },
+   },
+   paths: {
+       sources   : "./contracts", // Default: './contracts'
+       tests     : "./test",      // Default: './test'
+       cache     : "./cache",     // Default: './cache'
+       artifacts : "./artifacts"  // Default: './artifacts'
+   },
    networks: {
       zilliqaTestnet : {
          url      : "https://dev-api.zilliqa.com", // Zilliqa EVM Testnet RPC
@@ -15,4 +32,9 @@ module.exports = {
          accounts : [ "<PRIVATE_KEY>" ],           // Replace with your private key
       },
    },
+   sourcify: {
+     enabled    : true,
+     apiUrl     : "https://sourcify.dev/server",
+     browserUrl : "https://repo.sourcify.dev",
+   }
 };

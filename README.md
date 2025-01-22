@@ -9,8 +9,8 @@
    month        = {dec},
    organization = {Honoring Life Inc},
    url          = {https://token.honoring.life},
-   edition      = {1.0.0},
-   howpublished = {Online at \url{https://token.honoring.life/documents/whitepaper-1_0_0.pdf}},
+   edition      = {1.1.0},
+   howpublished = {Online at \url{https://token.honoring.life/documents/whitepaper-1_1_0.pdf}},
 }
 ```
 
@@ -82,13 +82,15 @@ With a total supply of 1 trillion tokens, Honor (HNR) is accessible to all with 
       - [Main Sale Participation Rewards](#main-sale-participation-rewards)
 - [The Token's Roadmap](#the-tokens-roadmap)
 - [Be Honorable](#be-honorable)
-- [Appendix](#appendix)
-   - [Solidity: Honor (HNR) Token](#solidity-honor-hnr-token)
-   - [ES6: Vesting Simulator](#es6-vesting-simulator)
-      - [Vesting Simulation](#vesting-simulation)
-   - [ES6: Sale Rewards Simulator](#es6-sale-rewards-simulator)
-      - [Sale Rewards Simulation](#sale-rewards-simulation)
-   - [Glossary](#glossary)
+- [Glossary](#glossary)
+- [Redeployment](#redeployment)
+   - [Bumpy Start](#bumpy-start)
+   - [The Audit](#the-audit)
+      - [The Contract](#the-contract)
+      - [Compilation](#compilation)
+      - [Deploymnet](#deployment)
+   - [Lessons Learned](#lessons-learned)
+   - [Conclusion](#conclusion)
 
 ## Introduction
 
@@ -803,7 +805,7 @@ Be Part of the Journey
 
 Together, we are creating an everlasting ecosystem where purpose meets progress. Let's honor lives, empower legacies, and build something that truly stands the test of time.
 
-### Glossary
+## Glossary
 
 | Term | Definition |
 | --- | --- |
@@ -823,3 +825,58 @@ Together, we are creating an everlasting ecosystem where purpose meets progress.
 | Token | A digital asset that represents ownership, value, identity, utility, and more on a blockchain. Honor (HNR) is our token. |
 | Treasury Reserve | A pool of tokens set aside for the future needs of the ecosystem, such as marketing, rewards, or creating liquidity. |
 | Vesting | A process where assets are gradually released to you over time. It ensures trust and prevents early sell-offs or "pump-and-dump" schemes. |
+
+## Redeployment
+
+We try to prioritize accessibility, security, and efficiency of our system to ensure that all users benefit from trustworthy protocols and optimized contracts.
+
+We have decided to redeploy the Honor (HNR) token on Zilliqa with updated protection and lower gas fees. We felt this was ethical and possible since no tokens had yet been distributed, ensuring that no users would be adversely affected by the redeployment. 
+
+### Bumpy Start
+On December 7, 2024, we launched our Honor (HNR) token on Zilliqa’s EVM Mainnet. This marked a pivotal step toward embracing Web3 technologies and expanding Honoring Life’s crypto presence. However, new to blockchain development and smart contracts, the process was riddled with challenges such as understanding Solidity best practices, managing deployment tools like Hardhat and Remix, and navigating the nuances of blockchain verification and contract optimization.
+Our journey began with successful deployment on Zilliqa’s EVM Testnet using Hardhat development tools. This provided us with the confidence to proceed to Mainnet. Unfortunately, we encountered deployment issues we could not initially resolve due to our lack of experience. To address this, we transitioned to Remix IDE, where we managed to deploy the contract successfully after several attempts.
+While verifying the contract on Zilliqa’s explorer, EVMX, we discovered that multiple Mainnet deployments had been completed inadvertently due to a misunderstanding of how deployment confirmations were handled by the tools we used. To maintain trust within our growing community, we systematically identified and burned the tokens from these unintended deployments. This process highlighted significant gaps in our workflow and understanding of blockchain verification tools.
+We learned, from the Zilliqa community, that EVMX had been deprecated in favor of Otterscan and that verification required precise adherence to best practices. Flattening our contract into a single file for verification resulted in only partial validation due to hash mismatches, a problem exacerbated by our lack of preparation and understanding. This led us to recognize the need for a thorough review of our practices.
+Finally, we used this code as a trial run with an auditor. 
+
+### The Audit
+A third-party audit of our code and processes provided invaluable insights into security, cost optimization, and adherence to best practices. Key takeaways included:
+
+#### The Contract
+
+1. License Placement: Starting with a license comment instead of arbitrary comments is a best practice.
+2. Pragma Statements: Using explicit versioning (e.g., pragma solidity 0.8.28;) ensures compatibility and optimization.
+3. Named Imports: Specifying required modules reduces overhead and simplifies compilation.
+4. Constructor Initialization: Declaring parameters directly improved clarity and alignment with modern Solidity standards.
+5. Numeric Literals: Using 1e18 instead of (10 ** decimals()) simplifies expressions and removes ambiguity for the compiler.
+6. Payable Constructor: Adding this modifier reduced deployment costs.
+7. CID Update Method: Enhancements included input validation, emitting events, and using modern error handling techniques.
+8. Fund Handling: Implementing default behavior for unexpected funds enhanced stability and security of the contract.
+
+#### Compilation
+
+1. Version Awareness: Explicitly setting EVM and Solidity versions (“paris” and 0.8.28, respectively) ensured consistency, compatibility, and better optimization.
+2. Optimizer Settings: Configuring for 200 optimization runs reduced gas costs.
+3. Artifact Archiving: Storing compilation outputs provided transparency and enabled perfect validation scores.
+
+#### Deployment
+1. Hardhat Configuration: Refined scripts ensured seamless Testnet and Mainnet launches.
+2. Separate EOAs: Differentiating Testnet and Mainnet addresses minimizes interception risks.
+3. Deployer Address: Using a dedicated deployer address and then transferring ownership and token supplies to dedicated owner addresses mitigates private key exposure.
+4. Immediate Verification: Leveraging Sourcify ensured contract validation and community trust.
+
+### Lessons Learned
+
+1. Preparation is Key: Entering a new domain without prior expertise led to missteps. Investing time in understanding tools and best practices beforehand could have saved significant effort.
+2. Community Trust: Transparency and proactive measures, such as burning unintended tokens, helped preserve trust.
+3. Thorough Reviews: Audits highlighted oversights that impacted security and costs. External perspectives are invaluable.
+4. Automation and Tools: Leveraging well-configured deployment scripts and trusted tools minimized manual errors and improved efficiency.
+5. Documentation and Artifacts: Proper archiving and validation practices enhanced credibility and compliance.
+
+### Conclusion
+
+The original deployment was effectively undone by our burning of all the tokens and revoking ownership of the contract. 
+
+The redeployment of the Honor (HNR) token was a humbling and very educational experience. It reinforced the importance of thorough preparation, embracing community feedback, and leveraging expert guidance; we are thankful for everyone’s suggestions and help.
+
+While the initial launch was challenging, the process has strengthened our resolve and commitment to excellence. We look forward to applying these lessons as we continue to innovate and grow Honoring Life’s blockchain presence.
